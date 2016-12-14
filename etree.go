@@ -380,6 +380,8 @@ func (e *Element) readFrom(ri io.Reader, charsetReader func(charset string, inpu
 	r := newCountReader(ri)
 	dec := xml.NewDecoder(r)
 	dec.CharsetReader = charsetReader
+	dec.Entity = xml.HTMLEntity
+	dec.Strict = false
 	var stack stack
 	stack.push(e)
 	for {
